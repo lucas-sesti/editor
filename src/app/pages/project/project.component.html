@@ -1,0 +1,72 @@
+<main>
+  <section>
+    <div *ngIf="openedProject; else noProject">
+      <header class="c-header">
+        <nav class="c-header__toolbar">
+          <app-tab
+            (click)="openTab(tab)"
+            (close)="onCloseTab(tab)"
+            *ngFor="let tab of tabs"
+            [fileName]="tab.file.name"
+            [active]="tabActive.file.id === tab.file.id"
+          ></app-tab>
+        </nav>
+      </header>
+    </div>
+    <ng-template #noProject>
+      <div>
+        <form>
+          <input
+            type="file"
+            webkitdirectory
+            mozdirectory
+            (change)="onUploadFile($event)"
+          />
+        </form>
+      </div>
+    </ng-template>
+  </section>
+  <article *ngIf="openedFile">
+    <div
+      *ngFor="let line of openedFile.fileContent; let i = index"
+      style="display: flex;"
+    >
+      <div>
+        {{ i + 1 }}
+      </div>
+      <div contenteditable="true">
+        {{ line }}
+      </div>
+    </div>
+  </article>
+  <aside *ngIf="files" class="c-aside">
+    <div class="c-aside__content">
+      <div
+        [style.display]="itemsTop ? 'flex' : 'none'"
+        class="c-aside__options-top"
+      >
+        <div>
+          <div class="c-aside__logo"></div>
+          <div class="c-aside__explorer" (click)="onOpenExplorer()"></div>
+        </div>
+        <div class="c-aside__config"></div>
+      </div>
+      <div
+        *ngIf="files"
+        [style.display]="itemsTop ? 'none' : 'flex'"
+        class="c-aside__project"
+      >
+        <div *ngFor="let file of files">
+          <p (click)="onClickFile(file)">{{ file.name }}</p>
+        </div>
+      </div>
+      <div
+        [style.display]="itemsTop ? 'none' : 'flex'"
+        class="c-aside__options-bottom"
+      >
+        <div class="c-aside__explorer" (click)="onOpenExplorer()"></div>
+        <div class="c-aside__config"></div>
+      </div>
+    </div>
+  </aside>
+</main>

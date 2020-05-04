@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/editor",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -30,7 +30,12 @@
             "styles": [
               "src/styles.sass"
             ],
-            "scripts": []
+            "scripts": [
+              {
+                "input": "index.js",
+                "inject": false
+              }
+            ]
           },
           "configurations": {
             "production": {
@@ -38,6 +43,10 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "index.js",
+                  "with": "index.prod.js"
                 }
               ],
               "optimization": true,
@@ -123,6 +132,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "editor"
+    }
+  },
+  "defaultProject": "editor",
+  "cli": {
+    "analytics": false
+  }
 }

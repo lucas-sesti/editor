@@ -1,0 +1,39 @@
+.c-tab
+  position: relative
+  width: 176px
+  padding: 8px 0
+  border-top-right-radius: 9px
+  display: flex
+  align-items: center
+  justify-content: space-around
+  -webkit-touch-callout: none
+  -webkit-user-select: none
+  -khtml-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+  cursor: pointer
+
+  &--name
+    width: 100%
+    white-space: nowrap
+    text-overflow: ellipsis
+    overflow: hidden
+    padding-left: 24px
+    padding-right: 36px
+
+  &--active
+    color: white
+    background: #2C2B3C
+
+  &--inactive
+    border: 1px solid #2C2B3C
+    border-left: none
+    border-bottom: none
+    margin-left: -12px
+
+  &--close
+    position: absolute
+    right: 12px
+    width: 14px
+    height: 14px
