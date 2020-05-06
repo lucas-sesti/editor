@@ -1,3 +1,3 @@
 export class EditorFile {
-  constructor(public lineCount: number, public file, public fileContent: any[]) {}
+  constructor(public lineCount: number, public file, public fileContent) {}
 }

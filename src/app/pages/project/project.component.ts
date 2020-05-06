@@ -28,7 +28,7 @@ export class ProjectComponent implements OnInit {
 
   public files;
   public openedProject: boolean = false;
-  public sla;
+
   public openedFile: EditorFile;
 
   public toggledMenu: string = 'in';
@@ -87,13 +87,10 @@ export class ProjectComponent implements OnInit {
 
     fileReader.onloadend = function (x) {
       const lineCount = fileReader.result.toString().split(/\r\n|\r|\n/).length;
-      self.sla = fileReader.result;
 
-      self.openedFile = new EditorFile(
-        lineCount,
-        file,
-        fileReader.result.toString().split(/\r\n|\r|\n/)
-      );
+      console.log(fileReader.result);
+
+      self.openedFile = new EditorFile(lineCount, file, fileReader.result);
     };
     fileReader.readAsText(file);
   }

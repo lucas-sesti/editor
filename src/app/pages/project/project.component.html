@@ -26,18 +26,7 @@
       </div>
     </ng-template>
   </section>
-  <article *ngIf="openedFile">
-    <div
-      *ngFor="let line of openedFile.fileContent; let i = index"
-      style="display: flex;"
-    >
-      <div>
-        {{ i + 1 }}
-      </div>
-      <div contenteditable="true">
-        {{ line }}
-      </div>
-    </div>
+  <article *ngIf="openedFile" [innerText]="openedFile.fileContent">
   </article>
   <aside *ngIf="files" class="c-aside">
     <div class="c-aside__content">
@@ -57,7 +46,7 @@
         class="c-aside__project"
       >
         <div *ngFor="let file of files">
-          <p (click)="onClickFile(file)">{{ file.name }}</p>
+          <p style="color: white;" (click)="onClickFile(file)">{{ file.name }}</p>
         </div>
       </div>
       <div

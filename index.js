@@ -15,14 +15,6 @@ function createWindow() {
 
   mainWindow.loadURL('http://localhost:4200');
 
-  // mainWindow.loadURL(
-  //   url.format({
-  //     pathname: path.join(__dirname, `/dist/index.html`),
-  //     protocol: "file:",
-  //     slashes: true,
-  //   })
-  // );
-  // Open the DevTools.
   mainWindow.webContents.openDevTools();
 
   mainWindow.on("closed", function () {
