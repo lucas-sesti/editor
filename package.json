@@ -2,11 +2,7 @@
   "name": "editor",
   "version": "0.0.0",
   "main": "dist/index.js",
-  "build": {
-    "files": [
-      "dist/electrong"
-    ]
-  },
+
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -19,7 +15,8 @@
     "electron": "wait-on http://localhost:4200 && electron .",
     "prestart": "npm run clean",
     "electron:start": "concurrently -k \"ng serve\" \"npm run electron\"",
-    "release": "electron-builder"
+    "release": "electron-builder",
+    "dist": "build"
   },
   "private": true,
   "dependencies": {

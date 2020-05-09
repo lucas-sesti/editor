@@ -13,6 +13,7 @@ import { EditorFile } from 'src/app/models/file/file.model';
   selector: 'app-project',
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.sass'],
+  preserveWhitespaces: true,
   animations: [
     trigger('slideInOut', [
       state('out', style({})),
@@ -40,6 +41,7 @@ export class ProjectComponent implements OnInit {
 
   public openTab(tab: TabModel): void {
     this.tabActive = tab;
+    this.loadFile(tab.file);
   }
 
   public onCloseTab(tab: TabModel): void {
@@ -66,8 +68,6 @@ export class ProjectComponent implements OnInit {
   }
 
   public onClickFile(file) {
-    let fileReader: FileReader = new FileReader();
-    let self = this;
     let addTab = true;
     const tab = {
       file: file,
@@ -83,7 +83,14 @@ export class ProjectComponent implements OnInit {
       this.tabs.push(tab);
     }
 
+    this.loadFile(file);
+
     this.tabActive = tab;
+  }
+
+  private loadFile(file) {
+    let fileReader: FileReader = new FileReader();
+    let self = this;
 
     fileReader.onloadend = function (x) {
       const lineCount = fileReader.result.toString().split(/\r\n|\r|\n/).length;

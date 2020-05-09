@@ -26,8 +26,13 @@
       </div>
     </ng-template>
   </section>
-  <article *ngIf="openedFile" [innerText]="openedFile.fileContent">
-  </article>
+  <article
+    contenteditable="true"
+    *ngIf="openedFile"
+    ngPreserveWhitespaces
+    style="white-space: pre;"
+    [innerText]="openedFile.fileContent"
+  ></article>
   <aside *ngIf="files" class="c-aside">
     <div class="c-aside__content">
       <div
@@ -46,7 +51,9 @@
         class="c-aside__project"
       >
         <div *ngFor="let file of files">
-          <p style="color: white;" (click)="onClickFile(file)">{{ file.name }}</p>
+          <p style="color: white;" (click)="onClickFile(file)">
+            {{ file.name }}
+          </p>
         </div>
       </div>
       <div
