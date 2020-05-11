@@ -1,3 +1,5 @@
+@import '~highlight.js/styles/github.css'
+
 .c-header
   &__toolbar
     max-width: 95%
@@ -27,13 +29,34 @@
     //   height: 3px
     //   background: #FBC800
 
+.c-opened-file
+  display: flex
+
+  &__counter
+    flex-grow: 0
+    display: flex
+    flex-direction: column
+    color: #ACADBC
+    border-right: 1px solid #ACADBC
+    padding: 0 6px
+    margin-right: 12px
+
+  &__content
+    display: flex
+    flex-direction: column
+    outline: none
+    width: 100%
+
+    &-file
+      color: #ACADBC
+
 .c-aside
   position: absolute
   right: 0
   top: 0
   bottom: 0
   background: #191517
-  padding: 0 16px
+  text-align: center
 
   &__content
     position: relative
@@ -42,10 +65,26 @@
     flex-direction: column
     align-items: center
     justify-content: space-between
+    min-width: 80px
 
   &__project
     display: flex
+    text-align: start
+    width: 100%
+    color: #ACADBC
     flex-direction: column
+
+    &-file
+      display: flex
+      align-items: center
+      justify-content: center
+      color: white
+      margin: 3px 0
+      padding: 3px 0
+
+      &--active
+        border-top: 1px solid #FBC800
+        border-bottom: 1px solid #FBC800
 
 
   &__options-top
@@ -71,11 +110,16 @@
     border-radius: 8px
 
   &__explorer
-    background: #6E7E85
-    padding: 24px
+    // padding: 24px
     margin-bottom: 42px
     margin-top: 24px
-    border-radius: 100px
+    // border-radius: 100px
+    fill: white
+    width: 40px
+    height: 40px
+
+    &--bottom
+      margin-right: 12px
 
   &__config
     background: #6E7E85
@@ -84,3 +128,12 @@
     margin-bottom: 42px
     margin-top: 24px
     border-radius: 100px
+
+
+::ng-deep
+  .hljs-tag, .hljs-name, .hljs-attribute
+    color: #F06543
+  .hljs-number
+    color: #ACADBC
+  .hljs-keyword, .hljs-selector-tag, .hljs-subst
+    color: #F06543

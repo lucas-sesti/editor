@@ -1,0 +1,27 @@
+<div>
+  <p *ngIf="!isRoot">{{ folder.name }}</p>
+
+  <div *ngIf="folderKeys && folderKeys.length > 0">
+    <div *ngFor="let folderName of folderKeys">
+      <div *ngIf="folder.children.hasOwnProperty(folderName)">
+        <div style="display: flex;">
+          {{ folder.children[folderName].name }}
+          <span (click)="toggled = !toggled">></span>
+        </div>
+
+        <div *ngIf="!toggled" style="margin-left: 12px;">
+          <app-children-folder
+            (fileClick)="onClickFile($event)"
+            [folder]="folder.children[folderName]"
+          ></app-children-folder>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!toggled">
+    <div *ngFor="let file of folder.files" (click)="onClickFile(file)">
+      {{ file.name }}
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, Menu } = require("electron");
 const url = require("url");
 const path = require("path");
 
@@ -8,12 +8,19 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    minimizable: false,
+    maximizable: false,
+    fullscreen: false,
+    closable: false,
+    frame: false,
+    titleBarStyle: "hiddenInset",
+    autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
     },
   });
 
-  mainWindow.loadURL('http://localhost:4200');
+  mainWindow.loadURL("http://localhost:4200");
 
   mainWindow.webContents.openDevTools();
 

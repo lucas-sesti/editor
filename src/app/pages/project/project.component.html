@@ -13,6 +13,7 @@
         </nav>
       </header>
     </div>
+
     <ng-template #noProject>
       <div>
         <form>
@@ -26,22 +27,42 @@
       </div>
     </ng-template>
   </section>
-  <article
-    contenteditable="true"
-    *ngIf="openedFile"
-    ngPreserveWhitespaces
-    style="white-space: pre;"
-    [innerText]="openedFile.fileContent"
-  ></article>
+
+  <div class="c-opened-file" *ngIf="openedFile">
+    <div class="c-opened-file__counter">
+      <div *ngFor="let count of counter(openedFile.lineCount); let i = index">
+        {{ i + 1 }}
+      </div>
+    </div>
+
+    <pre
+      class="c-opened-file__content"
+      contenteditable="true"
+      (input)="onChangeFile($event)"
+    >
+      <code
+        class="c-opened-file__content-file"
+        [innerHTML]="openedFile.fileContent">
+      </code>
+    </pre>
+  </div>
+
   <aside *ngIf="files" class="c-aside">
-    <div class="c-aside__content">
+    <div
+      class="c-aside__content"
+      [style.min-width]="toggledMenu === 'out' ? '200px' : '80px'"
+    >
       <div
         [style.display]="itemsTop ? 'flex' : 'none'"
         class="c-aside__options-top"
       >
         <div>
           <div class="c-aside__logo"></div>
-          <div class="c-aside__explorer" (click)="onOpenExplorer()"></div>
+          <mat-icon
+            class="c-aside__explorer"
+            svgIcon="folder"
+            (click)="onOpenExplorer()"
+          ></mat-icon>
         </div>
         <div class="c-aside__config"></div>
       </div>
@@ -50,17 +71,22 @@
         [style.display]="itemsTop ? 'none' : 'flex'"
         class="c-aside__project"
       >
-        <div *ngFor="let file of files">
-          <p style="color: white;" (click)="onClickFile(file)">
-            {{ file.name }}
-          </p>
-        </div>
+        <app-folder
+          (fileClick)="onClickFile($event)"
+          [folder]="hierarchy[rootFolter]"
+          [isRoot]="true"
+        ></app-folder>
       </div>
       <div
         [style.display]="itemsTop ? 'none' : 'flex'"
         class="c-aside__options-bottom"
       >
-        <div class="c-aside__explorer" (click)="onOpenExplorer()"></div>
+        <mat-icon
+          class="c-aside__explorer"
+          [class.c-aside__explorer--bottom]="!itemsTop"
+          svgIcon="folder"
+          (click)="onOpenExplorer()"
+        ></mat-icon>
         <div class="c-aside__config"></div>
       </div>
     </div>
