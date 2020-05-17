@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Folder } from 'src/app/models/folder/folder.model';
+import { EditorFile } from 'src/app/models/file/file.model';
 
 @Component({
   selector: 'app-children-folder',
@@ -11,8 +12,8 @@ export class ChildrenFolderComponent implements OnInit {
   public fileKeys: string[] = [];
   public toggled: boolean = false;
 
-
   @Input() folder: Folder;
+  @Input() openedFile: EditorFile;
 
   @Output() fileClick: EventEmitter<any> = new EventEmitter();
 

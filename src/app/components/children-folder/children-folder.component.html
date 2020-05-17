@@ -17,7 +17,11 @@
     </div>
   </div>
   <div *ngIf="!toggled">
-    <div (click)="onClickFile(file)" *ngFor="let file of folder.files">
+    <div
+      (click)="onClickFile(file)"
+      *ngFor="let file of folder.files"
+      [class.c-folder__file-active]="openedFile == file"
+    >
       {{ file.name }}
     </div>
   </div>

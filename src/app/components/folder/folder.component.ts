@@ -1,5 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+} from '@angular/core';
 import { Folder } from 'src/app/models/folder/folder.model';
+import { EditorFile } from 'src/app/models/file/file.model';
 
 @Component({
   selector: 'app-folder',
@@ -12,6 +20,7 @@ export class FolderComponent implements OnInit {
 
   @Input() folder: Folder;
   @Input() isRoot: boolean = false;
+  @Input() openedFile: EditorFile;
 
   @Output() fileClick: EventEmitter<any> = new EventEmitter<any>();
 

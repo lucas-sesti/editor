@@ -228,6 +228,9 @@ export class ProjectComponent implements OnInit {
 
   public openedFile: EditorFile;
 
+  editorOptions = { theme: 'vs-dark', language: 'javascript' };
+  code: string = 'function x() {\nconsole.log("Hello world!");\n}';
+
   public toggledMenu: string = 'in';
   public itemsTop: boolean = true;
 
@@ -340,17 +343,16 @@ export class ProjectComponent implements OnInit {
   }
 
   public onChangeFile(event) {
-    const value = event.target.innerHTML;
+    const value = event.target.innerText;
 
-    const strippedFile = value.replace(/(<([^>]+)>)/gi, '');
-
-    this.openedFile.lineCount =
-      this.lineCounter(value.replace(new RegExp('<br>', 'gm'), '\n')) - 1;
-
-    this.openedFile.fileContent = hljs.highlightAuto(
-      strippedFile,
-      this.languages
-    ).value;
+    hljs.highlight(this.languages[0], value);
+    // const strippedFile = value.replace(/(<([^>]+)>)/gi, '');
+    // this.openedFile.lineCount =
+    //   this.lineCounter(value.replace(new RegExp('<br>', 'gm'), '\n')) - 1;
+    // this.openedFile.fileContent = hljs.highlightAuto(
+    //   strippedFile,
+    //   this.languages
+    // ).value;
   }
 
   private loadFile(file) {
